@@ -13,7 +13,9 @@ const HomePage = ({ data }) => {
       <h1>Hi, this is the home page</h1>
       {edges.map(({ node }) => (
         <div key={node.id}>
-          <h3>{node.frontmatter.title} </h3>
+          <Link to={node.frontmatter.path}>
+            <h3>{node.frontmatter.title} </h3>
+          </Link>
           <p>{node.frontmatter.date}</p>
           <p>{node.excerpt}</p>
         </div>
@@ -35,8 +37,9 @@ export const query = graphql`
           id
           excerpt(pruneLength: 100)
           frontmatter {
+            path
             title
-            date
+            date(formatString: "MMMM Do, YYYY")
           }
         }
       }
