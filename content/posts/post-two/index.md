@@ -2,6 +2,7 @@
 path: '/post-one'
 date: '02-04-2019'
 title: 'My second post'
+draft: false
 tags: ['gatsby', 'other']
 ---
 
