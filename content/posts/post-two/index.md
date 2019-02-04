@@ -1,0 +1,10 @@
+---
+path: '/post-one'
+date: '02-04-2019'
+title: 'My second post'
+tags: ['gatsby', 'other']
+---
+
+    This is my second post where I will talk about how I got into **GatsbyJS**!
+
+I was inspired by the fact how easy it actually is to get a statically generated react app up and ready to run in less than 15-20 minutes. This is what brought me to **GatsbyJs**.
