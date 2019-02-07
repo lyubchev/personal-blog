@@ -6,6 +6,6 @@ draft: false
 tags: ['gatsby', 'other']
 ---
 
-    This is my first post using **GatsbyJS**!
+This is my first post using **GatsbyJS**!
 
 I think it's quite good since it is fast, it is easy to setup and deploy.
