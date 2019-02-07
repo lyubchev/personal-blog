@@ -21,7 +21,6 @@ const HomePage = ({ data }) => {
         </div>
       ))}
       <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }} />
-      <Link to="/about">Go to About page</Link>
     </Layout>
   );
 };
