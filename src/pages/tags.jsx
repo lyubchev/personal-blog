@@ -1,8 +1,8 @@
 import React from 'react';
 
-const TagsPage = ({ pageContext }) => {
-  console.log(pageContext);
-  return <div>Tags Page nNot Here</div>;
+const TagsPage = props => {
+  console.log(props);
+  return <div>Tags Page Not Here</div>;
 };
 
 export default TagsPage;

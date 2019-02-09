@@ -33,14 +33,14 @@ exports.createPages = ({ graphql, actions }) => {
         }
       `).then(response => {
         /**
-         * Reject the promise on errors
+         * Reject the promise on response errors
          */
         if (response.errors) {
           return Promise.reject(response.errors);
         }
 
         /**
-         * Set the newly gathered post to a variable
+         * Set the fetched posts to a variable
          */
         const posts = response.data.allMarkdownRemark.edges;
 
@@ -133,7 +133,4 @@ exports.onCreatePage = ({ page, actions }) => {
   });
 };
 
-/**
- * Replacing '/' would result in empty string which is invalid
- */
 const replacePath = path => (path === `/` ? path : path.replace(/\/$/, ``));
