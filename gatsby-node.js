@@ -10,7 +10,6 @@ exports.createPages = ({ graphql, actions }) => {
   return new Promise((resolve, reject) => {
     const postTemplate = path.resolve(__dirname, 'src/templates/post.jsx');
     const tagTemplate = path.resolve(__dirname, 'src/templates/tag.jsx');
-    const tagsPage = path.resolve(__dirname, 'src/pages/tags.jsx');
 
     /**
      * We resolve the promise to get the response from
@@ -77,7 +76,7 @@ exports.createPages = ({ graphql, actions }) => {
         });
 
         /**
-         * Set all tag names (keys), then send them as a context to /tags page
+         * Get all tag names (keys), then send them as a context to /tags page
          */
         const tagNames = Object.keys(postsByTag);
 
