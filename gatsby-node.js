@@ -9,10 +9,12 @@ exports.createPages = ({ graphql, actions }) => {
 
   return new Promise((resolve, reject) => {
     const postTemplate = path.resolve(__dirname + '/src/templates/post.jsx');
+    const tagTemplate = path.resolve(__dirname + '/src/templates/tag.jsx');
+    const tagPage = path.resolve(__dirname, 'src/pages/tags.jsx');
 
     /**
-     * We resolve the promise so we can get the result from
-     * the graphql query
+     * We resolve the promise to get the response from
+     * the graphql query as a param
      */
     resolve(
       graphql(`
@@ -28,28 +30,48 @@ exports.createPages = ({ graphql, actions }) => {
             }
           }
         }
-      `).then(result => {
+      `).then(response => {
         /**
          * Reject the promise on errors
          */
-        if (result.errors) {
-          return Promise.reject(result.errors);
+        if (response.errors) {
+          return Promise.reject(response.errors);
         }
 
         /**
          * Set the newly gathered post to a variable
          */
-        const posts = result.data.allMarkdownRemark.edges;
+        const posts = response.data.allMarkdownRemark.edges;
+
+        /**
+         * Create an object where each tag corresponds to a list of posts
+         */
+        const postsByTag = {};
 
         /**
          * Create the actual pages by mapping through posts
          */
         posts.forEach(({ node }) => {
-          const path = node.frontmatter.path;
+          const { path, tags } = node.frontmatter;
 
           /**
-           * Make pathSlug = path, later on we will use it to
-           * to fetch the wanted post
+           * Populate the postsByTag object
+           */
+          tags.forEach(tag => {
+            /**
+             * If the current tag does not exist in our object, simple
+             * create it, then the node is pushed
+             */
+            if (!postsByTag[tag]) {
+              postsByTag[tag] = [];
+            }
+
+            postsByTag[tag].push(node);
+          });
+
+          /**
+           * Make pathSlug = path, which will be used it to
+           * to fetch the correct post
            */
           createPage({
             path,
@@ -58,6 +80,19 @@ exports.createPages = ({ graphql, actions }) => {
               pathSlug: path
             }
           });
+        });
+
+        /**
+         * Get all tag names (keys), then send them as a context to the /tags page
+         */
+        const tagKeys = Object.keys(postsByTag);
+
+        createPage({
+          path: '/tags',
+          component: tagPage,
+          context: {
+            tags: tagKeys.sort()
+          }
         });
       })
     );

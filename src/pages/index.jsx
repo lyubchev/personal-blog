@@ -6,7 +6,6 @@ import Layout from '../layouts/layout';
 
 const HomePage = ({ data }) => {
   const { edges } = data.allMarkdownRemark;
-
   return (
     <Layout>
       <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />

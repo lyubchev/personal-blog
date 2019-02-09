@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Tag = () => {
-  return <div>Tags Page Here</div>;
+  return <div>Tag Template here</div>;
 };
 
 export default Tag;
