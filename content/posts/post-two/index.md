@@ -3,7 +3,7 @@ path: '/post-two'
 date: '2019-04-02'
 title: 'My second post'
 draft: false
-tags: ['gatsby', 'other']
+tags: ['gatsby', 'react']
 ---
 
 This is my second post where I will talk about how I got into **GatsbyJS**!

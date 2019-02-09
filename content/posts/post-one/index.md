@@ -3,7 +3,7 @@ path: '/post-one'
 date: '2019-02-02'
 title: 'My first post'
 draft: false
-tags: ['gatsby', 'other']
+tags: ['nextjs', 'react']
 ---
 
 This is my first post using **GatsbyJS**!

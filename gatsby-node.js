@@ -9,8 +9,8 @@ exports.createPages = ({ graphql, actions }) => {
 
   return new Promise((resolve, reject) => {
     const postTemplate = path.resolve(__dirname + '/src/templates/post.jsx');
+    const tagsPage = path.resolve(__dirname, 'src/pages/tags.jsx');
     const tagTemplate = path.resolve(__dirname + '/src/templates/tag.jsx');
-    const tagPage = path.resolve(__dirname, 'src/pages/tags.jsx');
 
     /**
      * We resolve the promise to get the response from
@@ -25,6 +25,7 @@ exports.createPages = ({ graphql, actions }) => {
                 frontmatter {
                   path
                   title
+                  tags
                 }
               }
             }
@@ -60,7 +61,7 @@ exports.createPages = ({ graphql, actions }) => {
           tags.forEach(tag => {
             /**
              * If the current tag does not exist in our object, simple
-             * create it, then the node is pushed
+             * create it, then each node is pushed
              */
             if (!postsByTag[tag]) {
               postsByTag[tag] = [];
@@ -75,21 +76,18 @@ exports.createPages = ({ graphql, actions }) => {
            */
           createPage({
             path,
-            component: postTemplate,
-            context: {
-              pathSlug: path
-            }
+            component: postTemplate
           });
         });
 
         /**
-         * Get all tag names (keys), then send them as a context to the /tags page
+         * Get all tag names (keys), then send them as a context to /tags page
          */
         const tagKeys = Object.keys(postsByTag);
 
         createPage({
           path: '/tags',
-          component: tagPage,
+          component: tagsPage,
           context: {
             tags: tagKeys.sort()
           }

@@ -4,8 +4,7 @@ import Layout from '../layouts/layout';
 
 const Post = ({ data }) => {
   const post = data.markdownRemark;
-  const title = post.frontmatter.title;
-  const date = post.frontmatter.date;
+  const { title, date } = post.frontmatter;
   const html = post.html;
 
   return (
@@ -18,8 +17,8 @@ const Post = ({ data }) => {
 };
 
 export const query = graphql`
-  query($pathSlug: String!) {
-    markdownRemark(frontmatter: { path: { eq: $pathSlug } }) {
+  query($path: String!) {
+    markdownRemark(frontmatter: { path: { eq: $path } }) {
       html
       frontmatter {
         date(formatString: "MMMM Do, YYYY")
