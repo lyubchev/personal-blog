@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'gatsby';
 
 const TagsPage = ({ data }) => {
   const posts = data.allMarkdownRemark.edges;
@@ -15,7 +16,18 @@ const TagsPage = ({ data }) => {
     });
   });
 
-  return <div>Tags Page Not Here {tags}</div>;
+  return (
+    <div>
+      <div>Find posts by topic</div>
+      <ul>
+        {tags.map((tagName, index) => (
+          <li key={index}>
+            <Link to={`/tags/${tagName}`}>{tagName}</Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 };
 
 export const query = graphql`
