@@ -50,7 +50,7 @@ exports.createPages = ({ graphql, actions }) => {
         const postsByTag = {};
 
         /**
-         * Create the actual pages by mapping through posts
+         * Create post pages by mapping through posts
          */
         posts.forEach(({ node }) => {
           const { path, tags } = node.frontmatter;
@@ -70,10 +70,6 @@ exports.createPages = ({ graphql, actions }) => {
             postsByTag[tag].push(node);
           });
 
-          /**
-           * Make pathSlug = path, which will be used it to
-           * to fetch the correct post
-           */
           createPage({
             path,
             component: postTemplate
@@ -84,6 +80,22 @@ exports.createPages = ({ graphql, actions }) => {
          * Get all tag names (keys), then send them as a context to /tags page
          */
         const tagKeys = Object.keys(postsByTag);
+
+        /**
+         * Create tags pages by mapping through posts
+         */
+        tagKeys.forEach(tagName => {
+          const posts = postsByTag[tagName];
+
+          createPage({
+            path: `/tags/${tagName}`,
+            component: tagTemplate,
+            context: {
+              posts,
+              tagName
+            }
+          });
+        });
 
         createPage({
           path: '/tags',
