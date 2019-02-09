@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'gatsby';
+import Layout from '../layouts/layout';
 
 const Tag = ({ pageContext }) => {
   const { posts, tagName } = pageContext;
 
   return (
-    <div>
+    <Layout>
       <div>Posts about {`${tagName}`}</div>
       <div>
         <ul>
@@ -16,7 +17,7 @@ const Tag = ({ pageContext }) => {
           ))}
         </ul>
       </div>
-    </div>
+    </Layout>
   );
 };
 

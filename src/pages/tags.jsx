@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'gatsby';
+import Layout from '../layouts/layout';
 
 const TagsPage = ({ data }) => {
   const posts = data.allMarkdownRemark.edges;
@@ -17,7 +18,7 @@ const TagsPage = ({ data }) => {
   });
 
   return (
-    <div>
+    <Layout>
       <div>Find posts by topic</div>
       <ul>
         {tags.map((tagName, index) => (
@@ -26,7 +27,7 @@ const TagsPage = ({ data }) => {
           </li>
         ))}
       </ul>
-    </div>
+    </Layout>
   );
 };
 
