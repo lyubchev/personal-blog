@@ -81,7 +81,7 @@ exports.createPages = ({ graphql, actions }) => {
         const tagNames = Object.keys(postsByTag);
 
         /**
-         * Create tags pages by mapping through posts
+         * Create tags pages by mapping through tags
          */
         tagNames.forEach(tag => {
           const posts = postsByTag[tag];

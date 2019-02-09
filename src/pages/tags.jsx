@@ -15,8 +15,7 @@ const TagsPage = ({ data }) => {
     });
   });
 
-  console.log(tags);
-  return <div>Tags Page Not Here</div>;
+  return <div>Tags Page Not Here {tags}</div>;
 };
 
 export const query = graphql`
