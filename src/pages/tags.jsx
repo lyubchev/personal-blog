@@ -1,10 +1,11 @@
-import React from 'react';
-import { Link } from 'gatsby';
+import React, { useState, useEffect } from 'react';
 import Layout from '../layouts/layout';
+import TagsBlock from '../components/TagsBlock';
 
 const TagsPage = ({ data }) => {
+  const [tags, setTags] = useState([]);
   const posts = data.allMarkdownRemark.edges;
-  let tags = [];
+  const tempTags = [];
 
   /**
    * Populate tags array
@@ -17,16 +18,14 @@ const TagsPage = ({ data }) => {
     });
   });
 
+  useEffect(() => {
+    setTags(tempTags);
+  }, []);
+
   return (
     <Layout>
       <div>Find posts by topic</div>
-      <ul>
-        {tags.map((tagName, index) => (
-          <li key={index}>
-            <Link to={`/tags/${tagName}`}>{tagName}</Link>
-          </li>
-        ))}
-      </ul>
+      <TagsBlock tags={tags} />
     </Layout>
   );
 };
