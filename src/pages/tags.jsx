@@ -18,6 +18,9 @@ const TagsPage = ({ data }) => {
     });
   });
 
+  /**
+   * Set tags initially (the equivalent react hook for componendDidMount)
+   */
   useEffect(() => {
     setTags(tempTags);
   }, []);
