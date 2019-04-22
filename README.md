@@ -1,2 +1,4 @@
 # Lyubo Lyubchev Personal Blog
-:book: My blog **WIP**
+:book: My blog 
+
+Btw it is **WIP**
